@@ -1,1 +1,1 @@
-# dj_oaut2_toolkits
+# python manage.py runserver 0.0.0.0:400
