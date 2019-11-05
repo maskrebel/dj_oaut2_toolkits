@@ -61,5 +61,7 @@ def do_login(request):
             if user is None:
                 data['errorMsg'] = INCORRECT_CREDENTIAL_MSG
                 return select_template_url(request, data, client_id, query_string, data['errorMsg'])
+            else:
+                return HttpResponse("sudah login")
 
     return select_template_url(request, data, client_id, query_string, data.get('errorMsg', None))
