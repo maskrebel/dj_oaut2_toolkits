@@ -5,7 +5,7 @@ from . import views
 app_name = 'ac'
 urlpatterns = [
     path('', views.index, name='index'),
-    path('login/', views.do_login, name='login'),
+    # path('login/', views.do_login, name='login'),
     # path('loginaksi/', views.loginaksi, name='loginaksi'),
     # path('login/', views.login, name='login'),
     # # path('home/', views.home, name='home'),

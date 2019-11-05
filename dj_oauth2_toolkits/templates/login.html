@@ -5,6 +5,78 @@
     <title>Title</title>
 </head>
 <body>
-fasdasdasdas
+<form action="{% url 'o:login' %}?{{query_string}}" target="_parent" method="post" id="form__login">
+    {% csrf_token %}
+
+    {% if errorMsg %}
+        <div class="form-error alert alert-danger"><strong></strong>
+            <ul><li>{{ errorMsg }}</li></ul></div>
+    {% endif %}
+
+    <fieldset class="dtkid__form__fieldset">
+        <label for="">ALAMAT EMAIL</label>
+        <div class="dtkid__form__fieldset__input--icon">
+            <span class="icon icon-icon_user icon-icon_user-dims"></span>
+            <input type="text" name="username" placeholder="Email" data-validation="required"
+                   data-validation-error-msg="Username/email atau password yang Anda yang masukan salah">
+        </div>
+    </fieldset>
+    <fieldset class="dtkid__form__fieldset">
+        <label for="">PASSWORD</label>
+        <div class="dtkid__form__fieldset__input--icon password-group">
+            <span class="icon icon-icon_lock icon-icon_lock-dims"></span>
+            <input type="password" name="password" placeholder="Password" data-validation="required"
+                   data-validation-error-msg="Username/email atau password yang Anda yang masukan salah" class="password-box" autocomplete="off">
+            <a href="#!" class="password-visibility"><i class="icon icon-icon_password icon-icon_password-dims"></i></a>
+        </div>
+    </fieldset>
+
+    {% if recaptcha %}
+        <script type="text/javascript">
+            var RecaptchaOptions = {
+                tabindex: 1,
+                theme: 'custom',
+                custom_theme_widget: 'recaptcha_widget'
+            };
+        </script>
+
+        <fieldset class="dtkid__form__fieldset captcha">
+            <div id="recaptcha_image"></div>
+        </fieldset>
+
+                    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+                <div id = "g-recaptcha" class="g-recaptcha" data-sitekey={{recaptcha_public_key}}></div>
+            <noscript>
+                <div>
+                    <div style="width: 302px; height: 422px; position: relative;">
+                        <div style="width: 302px; height: 422px; position: absolute;">
+                        <iframe src="https://www.google.com/recaptcha/api/fallback?k="{{recaptcha_public_key}}
+                                frameborder="0" scrolling="no"
+                                style="width: 302px; height:422px; border-style: none;">
+                        </iframe>
+                      </div>
+                    </div>
+                    <div style="width: 300px; height: 60px; border-style: none;
+                                   bottom: 12px; left: 25px; margin: 0px; padding: 0px; right: 25px;
+                                   background: #f9f9f9; border: 1px solid #c1c1c1; border-radius: 3px;">
+                      <textarea id="g-recaptcha-response" name="g-recaptcha-response"
+                                   class="g-recaptcha-response"
+                                   style="width: 250px; height: 40px; border: 1px solid #c1c1c1;
+                                          margin: 10px 25px; padding: 0px; resize: none;" >
+                      </textarea>
+                    </div>
+                </div>
+            </noscript>
+
+
+        <script type="text/javascript">
+            window.onload = function() {
+                Recaptcha_2.focus_response_field();
+            }
+        </script>
+    {% endif %}
+
+    <button onclick="gtmDataLayer('Login', 'Email')" class="dtkid__form__btn" value="masuk">MASUK</button>
+</form>
 </body>
 </html>
