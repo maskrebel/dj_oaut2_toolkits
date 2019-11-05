@@ -1,0 +1,28 @@
+version: '2'
+services:
+  toolkits-python:
+    container_name: toolkits-python
+    build:
+      context: .
+      dockerfile: Python.Dockerfile
+    ports:
+    - "4000:4000"
+    - "2231:22"
+#    - 0.0.0.0:4000:22
+#    command: python /code/example/django/demodc_cnnindonesia_com/manage.py runserver 0.0.0.0:5000
+#    command: python dj_oauth2_toolkits/manage.py runserver 0.0.0.0:4000
+    command: /usr/sbin/sshd -D
+#    command: sh -c "python /code/setup.py install && python /code/example/django/demodc_cnnindonesia_com/manage.py runserver 0.0.0.0:5000"
+    volumes:
+    - .:/code
+    working_dir: /code
+    depends_on:
+      - toolkits-db
+
+  toolkits-db:
+    container_name: toolkits-db
+    image: postgres:9.5.6-alpine
+    volumes:
+      - ~/mainsite:/var/lib/postgresql/data
+    ports:
+      - 0.0.0.0:5435:5432
