@@ -5,10 +5,12 @@ from django.core.exceptions import MultipleObjectsReturned
 from django.contrib.auth import login, authenticate
 from django.http import HttpResponseRedirect, HttpResponse
 from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
-
+# from django.views.decorators.csrf import csrf_protect, requires_csrf_token
+from ..oauth2.decorators import calculate_redirect_to
 
 INCORRECT_CREDENTIAL_MSG = 'Username/email atau password yang Anda masukan salah'
 
+@calculate_redirect_to
 def do_login(request):
     # response = HttpResponse("do_login")
     # return response
@@ -38,6 +40,16 @@ def do_login(request):
         'query_string': query_string,
         'form': LoginForm() if request.method == 'GET' else LoginForm(request.POST) if request.method == 'POST' else None,
     }
+    # if client_id:
+    #     try:
+    #         client_details = AppsClient.objects.get(id=client_id)
+    #     except AppsClient.DoesNotExist:
+    #         return render(request, 'detikconnect/dc/desktop/404.html', data)
+    #     data['back_url'] = client_details.site_url if client_details.site_url else client_details.base_domain
+    #     data['app_name'] = settings.CUSTOM_TEMPLATE_CLIENT.get(client_id, None)
+    # else:
+    #     client_details = None
+
     query_string = urlencode(request.GET)
     if request.method == 'POST':
 
