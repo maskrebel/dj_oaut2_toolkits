@@ -3,7 +3,7 @@ services:
   toolkits-python:
     container_name: toolkits-python
     build:
-      context: .
+      context: ..
       dockerfile: Python.Dockerfile
     ports:
     - "4000:4000"

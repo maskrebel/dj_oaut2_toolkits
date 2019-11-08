@@ -8,7 +8,8 @@
 <p>john</p>
 <p>lennon@thebeatles.com</p>
 <p>johnpassword</p>
-<form action="{% url 'o:login' %}?{{query_string}}" target="_parent" method="post" id="form__login">
+{#<form action="{% url 'o:dashboard' %}?{{query_string}}" target="_parent" method="post" id="form__login">#}
+<form action="{% url 'o:dashboard' %}" target="_parent" method="post" id="form__login">
     {% csrf_token %}
 
     {% if errorMsg %}

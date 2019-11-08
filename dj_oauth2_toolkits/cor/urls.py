@@ -30,7 +30,7 @@ if settings.DEBUG:
 
 urlpatterns = [
     # OAuth 2 endpoints:
-    url(r'^o/', include(oauth2_endpoint_views, namespace="oauth2")),
-    url(r'^api/hello', ApiEndpoint.as_view()),  # an example resource endpoint
-    # path('api/hello', ApiEndpoint.as_view()),  # an example resource endpoint
+    # url(r'^o/', include(oauth2_endpoint_views, namespace="oauth2")),
+    # url(r'^api/hello', ApiEndpoint.as_view()),  # an example resource endpoint
+    path('api/hello', ApiEndpoint.as_view()),  # an example resource endpoint
 ]

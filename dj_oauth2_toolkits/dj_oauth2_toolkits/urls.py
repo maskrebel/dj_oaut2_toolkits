@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls import url
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('ac/', include('account.urls')),
-    path('o/', include('connect.urls', namespace='connect')),
+    # path('admin/', admin.site.urls),
+    # url(r'^cor/', include('cor.urls', namespace='cor')),
+    # path('connect/', include('connect.urls', namespace='connect')),
+    url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    url(r'^con/', include('connect.urls', namespace='cor')),
 ]
