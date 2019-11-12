@@ -2,7 +2,7 @@ from django.conf.urls import url, include
 import oauth2_provider.views as oauth2_views
 from django.conf import settings
 from .views import ApiEndpoint
-from django.urls import path
+from django.urls import path, re_path
 
 # OAuth2 provider endpoints
 oauth2_endpoint_views = [
@@ -27,10 +27,10 @@ if settings.DEBUG:
         url(r'^authorized-tokens/(?P<pk>\d+)/delete/$', oauth2_views.AuthorizedTokenDeleteView.as_view(),
             name="authorized-token-delete"),
     ]
-
+app_name = 'connect'
 urlpatterns = [
     # OAuth 2 endpoints:
-    url(r'^o/', include(oauth2_endpoint_views, namespace="oauth2")),
-    url(r'^api/hello', ApiEndpoint.as_view()),  # an example resource endpoint
+    url(r'^o/', include(oauth2_endpoint_views)),
+    url(r'^s/', ApiEndpoint.as_view()),  # an example resource endpoint
     # path('api/hello', ApiEndpoint.as_view()),  # an example resource endpoint
 ]
